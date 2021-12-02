@@ -52,12 +52,25 @@ namespace AdventOfCode.Y2021.Days
             var start = DateTime.Now;
 
             #region Solution
+            int depth = 0;
+            int forward = 0;
 
+            for (int i = 0; i < inputs.Count; i++)
+            {
+                string s = inputs[i];
+                string[] ss = s.Split();
+                string command = ss[0];
+                //int amt = (int)ss[1];
+                int amt = int.Parse(ss[1]);
 
+                if (command == "forward") forward += amt;
+                if (command == "up") depth -= amt;
+                if (command == "down") depth += amt;
+            }
+            result = depth * forward;
+                #endregion
 
-            #endregion
-
-            var ms = Math.Round((DateTime.Now - start).TotalMilliseconds);
+                var ms = Math.Round((DateTime.Now - start).TotalMilliseconds);
 
             if (result > 0) Answer1 = result.ToString();
             return $"Part 1 ({ms}ms): {result} ";
@@ -68,9 +81,25 @@ namespace AdventOfCode.Y2021.Days
             long result = 0;
 
             var start = DateTime.Now;
-
+ 
             #region Solution
+            int depth = 0;
+            int forward = 0;
+            int aim = 0;
 
+            for (int i = 0; i < inputs.Count; i++)
+            {
+                string s = inputs[i];
+                string[] ss = s.Split();
+                string command = ss[0];
+                //int amt = (int)ss[1];
+                int amt = int.Parse(ss[1]);
+
+                if (command == "forward") { forward += amt; depth += aim * amt; }
+                else if (command == "up") aim -= amt;
+                else if (command == "down") aim += amt;
+            }
+            result = depth * forward;
 
 
             #endregion
