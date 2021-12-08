@@ -45,7 +45,7 @@ For i = 1 To lastrow
     result = 0
 Next i
 '------ Output results and ti;e taken ---------------------
-Debug.Print "Solution to part 1: " & bigresult
+Debug.Print "Solution to part 2: " & bigresult
 Debug.Print "Time taken = " & Timer - Start & " seconds"
 '----------------------------------------------------------
 End Sub
