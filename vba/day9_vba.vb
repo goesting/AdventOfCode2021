@@ -5,7 +5,6 @@ lastcol = Len(Cells(1, 1).Value)
 Dim hmap() As Variant
 ReDim hmap(0 To lastrow + 1, 0 To lastcol + 1)
 
-
 For i = LBound(hmap, 1) To UBound(hmap, 1)
     For j = LBound(hmap, 2) To UBound(hmap, 2)
         If i = 0 Or i = UBound(hmap, 1) Or j = 0 Or j = UBound(hmap, 2) Then
@@ -16,7 +15,6 @@ For i = LBound(hmap, 1) To UBound(hmap, 1)
     
     Next j
 Next i
-x = 1
 
 For i = LBound(hmap, 1) + 1 To UBound(hmap, 1) - 1
     For j = LBound(hmap, 2) + 1 To UBound(hmap, 2) - 1
@@ -29,8 +27,6 @@ For i = LBound(hmap, 1) + 1 To UBound(hmap, 1) - 1
             risk = v + 1
             totalrisk = totalrisk + risk
         End If
-
-
     Next j
 Next i
 
@@ -40,6 +36,7 @@ Debug.Print "Solution to part 1: " & result
 Debug.Print "Time taken = " & Timer - Start & " seconds"
 '----------------------------------------------------------
 End Sub
+
 Sub day8b()
 Dim bs() As Variant                                                             'array to fill with all the bassin sizes
 Dim hmap() As Variant                                                           'input, height map
