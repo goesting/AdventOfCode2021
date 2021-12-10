@@ -18,8 +18,8 @@ inp = Cells(i, 1).Value
         Else                                        'c==closebracket
             d = stack.pop                           'pop last from stack and check if this closes
             With Application
-                If Not (.Match(d, valido, False) = .Match(c, validc, False)) Then
-                    result = result + punten(.Match(c, validc, False) - 1) '-1 to get correct 0 starting array index
+                If Not (.Match(d, valido, False) = .Match(c, validc, False)) Then   'gets the index in the arrays and compares them
+                    result = result + punten(.Match(c, validc, False) - 1)          '-1 to get correct 0 starting array index
                 End If
             End With
         End If
