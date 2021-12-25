@@ -17,8 +17,8 @@ On Error GoTo errhand:
 'of the target range in one go
 ymin = CInt(Split(Split(Split(Cells(1, 1).Value, ", ")(1), "=")(1), "..")(0)) ' get minimum of the target range
 maxdownspeed_at_equal = Abs(ymin) - 1                                         ' maximum allowed speed to barely hit the target range
-result = (maxdownspeed_at_equal + 1) * (maxdownspeed_at_equal / 2)            ' highest point is speed at start height(v) + v-1 + v-2 + ... + 2 + 1 - > math - > sum = (max+min) * elements/2
-
+result = (maxdownspeed_at_equal + 1) * (maxdownspeed_at_equal / 2)            ' highest point is v + v-1 + v-2 + ... + 2 + 1 - > math - > sum = (max+min) * elements/2
+                                                                              ' with v being the start speed (which is equal to the maxdownspeed at equal
 'one line output for shits and giggles
 Debug.Print (Abs(CInt(Split(Split(Split(Cells(1, 1).Value, ", ")(1), "=")(1), "..")(0)))) * (Abs(CInt(Split(Split(Split(Cells(1, 1).Value, ", ")(1), "=")(1), "..")(0))) - 1 / 2)
 
