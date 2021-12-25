@@ -12,9 +12,9 @@ On Error GoTo errhand:
    getTime startTime
 '----start code------
 'no matter how high you launch, eventually it will hit the exact same height as where you started
-'with the same speed as when you launched it
+'with the same speed as when you launched it (just in the opposite direction)
 'so the highest speed it could arrive here, would be if the next step would take it all the way out to the minimum
-'of the range in one go
+'of the target range in one go
 ymin = CInt(Split(Split(Split(Cells(1, 1).Value, ", ")(1), "=")(1), "..")(0)) ' get minimum of the target range
 maxdownspeed_at_equal = Abs(ymin) - 1                                         ' maximum allowed speed to barely hit the target range
 result = (maxdownspeed_at_equal + 1) * (maxdownspeed_at_equal / 2)            ' highest point is speed at start height(v) + v-1 + v-2 + ... + 2 + 1 - > math - > sum = (max+min) * elements/2
