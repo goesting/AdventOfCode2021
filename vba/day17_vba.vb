@@ -1,8 +1,6 @@
 'Timing Functions
 Private Declare PtrSafe Function getFrequency Lib "kernel32" Alias "QueryPerformanceFrequency" (ByRef Frequency As Currency) As Long
 Private Declare PtrSafe Function getTime Lib "kernel32" Alias "QueryPerformanceCounter" (ByRef Counter As Currency) As Long
-
-
 Sub day17a()
 On Error GoTo errhand:
 'variables for timing
@@ -13,13 +11,17 @@ On Error GoTo errhand:
    getFrequency perSecond
    getTime startTime
 '----start code------
-y_str = Split(Cells(1, 1).Value, ", ")(1)
-ymin = CInt(Split(Split(y_str, "=")(1), "..")(0))
-maxdownspeed_at_equal = Abs(ymin) - 1
+'no matter how high you launch, eventually it will hit the exact same height as where you started
+'with the same speed as when you launched it
+'so the highest speed it could arrive here, would be if the next step would take it all the way out to the minimum
+'of the range in one go
+ymin = CInt(Split(Split(Split(Cells(1, 1).Value, ", ")(1), "=")(1), "..")(0)) ' get minimum of the target range
+maxdownspeed_at_equal = Abs(ymin) - 1                                         ' maximum allowed speed to barely hit the target range
+result = (maxdownspeed_at_equal + 1) * (maxdownspeed_at_equal / 2)            ' highest point is speed at start height(v) + v-1 + v-2 + ... + 2 + 1 - > math - > sum = (max+min) * elements/2
 
-Max_height = (maxdownspeed_at_equal + 1) * (maxdownspeed_at_equal / 2)
+'one line output for shits and giggles
+Debug.Print (Abs(CInt(Split(Split(Split(Cells(1, 1).Value, ", ")(1), "=")(1), "..")(0)))) * (Abs(CInt(Split(Split(Split(Cells(1, 1).Value, ", ")(1), "=")(1), "..")(0))) - 1 / 2)
 
-result = maxheight
 '------ Output results and time taken ---------------------
 getTime endTime
 timeElapsed = (endTime - startTime) / perSecond
@@ -27,7 +29,7 @@ Debug.Print "Solution to part 1: " & result
 Debug.Print "Time taken = " & timeElapsed & " seconds"
 Debug.Print ""
 '----------------------------------------------------------
-errhand:
+errhand: 'no real handling, just stopping to manually check it
 Stop
 Resume
 
